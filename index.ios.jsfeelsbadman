@@ -1,0 +1,61 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  LayoutAnimation,
+  TouchableWithoutFeedback
+} from 'react-native'
+
+class AwesomeProject extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      wiewStyle: {
+        height: 250,
+      }
+    }
+  }
+  animateView(){
+    this.setState({
+      viewStyle:{
+        height: this.state.viewStyle.height > 250 ? 250 : 450
+      }
+    })
+  }
+  render(){
+    let viewStyle = [styles.view, this.state.viewStyle]
+    return(
+      <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={this.animateView.bind(this)}>
+          <View style={viewStyle}></View>
+        </TouchableWithoutFeedback>
+      </View>
+    );
+  }
+};
+var styles = StyleSheet.create({
+  container: {
+    flex:1,
+    justifyContent: 'center',
+  },
+  view: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
+    margin: 20,
+    height: 250,
+    width: 250,
+    },
+  viewText: {
+    color: 'white'
+  }
+})
+AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
